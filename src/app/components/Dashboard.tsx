@@ -72,35 +72,35 @@ export function Dashboard({ onNavigate }: DashboardProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-black">
       {/* Navigation */}
       <Navigation onNavigate={onNavigate} currentPage="dashboard" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
-          <p className="text-gray-600">Track your progress and earn more crystals</p>
+          <h1 className="text-3xl font-bold mb-2 dark:text-white">Dashboard</h1>
+          <p className="text-gray-600 dark:text-gray-400">Track your progress and earn more crystals</p>
         </div>
 
         {/* Stats Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600">Total Crystals</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Crystals</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
-                <Sparkles className="size-8 text-purple-600" />
+                <Sparkles className="size-8 text-purple-600 dark:text-purple-400" />
                 <div>
-                  <div className="text-3xl font-bold text-purple-600">{crystals.toLocaleString()}</div>
-                  <p className="text-sm text-gray-600">Level {level}</p>
+                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">{crystals.toLocaleString()}</div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Level {level}</p>
                 </div>
               </div>
               <div className="mt-4">
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600">Progress to Level {level + 1}</span>
-                  <span className="font-medium">{crystals}/{nextLevelCrystals}</span>
+                  <span className="text-gray-600 dark:text-gray-400">Progress to Level {level + 1}</span>
+                  <span className="font-medium dark:text-gray-300">{crystals}/{nextLevelCrystals}</span>
                 </div>
                 <Progress value={(crystals / nextLevelCrystals) * 100} className="h-2" />
               </div>
@@ -109,38 +109,38 @@ export function Dashboard({ onNavigate }: DashboardProps) {
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600">Tasks Completed</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Tasks Completed</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="size-8 text-green-600" />
+                <CheckCircle2 className="size-8 text-green-600 dark:text-green-400" />
                 <div>
-                  <div className="text-3xl font-bold">12</div>
-                  <p className="text-sm text-gray-600">This month</p>
+                  <div className="text-3xl font-bold dark:text-white">12</div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">This month</p>
                 </div>
               </div>
               <div className="mt-4 flex items-center gap-2 text-sm">
-                <TrendingUp className="size-4 text-green-600" />
-                <span className="text-green-600 font-medium">+25%</span>
-                <span className="text-gray-600">from last month</span>
+                <TrendingUp className="size-4 text-green-600 dark:text-green-400" />
+                <span className="text-green-600 dark:text-green-400 font-medium">+25%</span>
+                <span className="text-gray-600 dark:text-gray-400">from last month</span>
               </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600">Referrals</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Referrals</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
-                <Users className="size-8 text-blue-600" />
+                <Users className="size-8 text-blue-600 dark:text-blue-400" />
                 <div>
-                  <div className="text-3xl font-bold">8</div>
-                  <p className="text-sm text-gray-600">Friends joined</p>
+                  <div className="text-3xl font-bold dark:text-white">8</div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Friends joined</p>
                 </div>
               </div>
               <div className="mt-4">
-                <Button variant="outline" size="sm" className="w-full">
+                <Button variant="outline" size="sm" className="w-full dark:border-white/20 dark:hover:bg-white/10">
                   <Share2 className="size-4 mr-2" />
                   Share Referral Link
                 </Button>
@@ -162,26 +162,26 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                   <div
                     key={task.id}
                     className={`p-4 border rounded-lg ${
-                      task.completed ? "bg-gray-50 opacity-75" : "bg-white hover:border-purple-300"
-                    } transition-colors`}
+                      task.completed ? "bg-gray-50 dark:bg-white/5 opacity-75" : "bg-white/50 dark:bg-white/5 hover:border-purple-300 dark:hover:border-purple-500/40 border-white/20 dark:border-white/10"
+                    } transition-colors backdrop-blur-sm`}
                   >
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold">{task.title}</h3>
+                          <h3 className="font-semibold dark:text-white">{task.title}</h3>
                           {task.featured && (
-                            <Badge variant="default" className="bg-purple-600">
+                            <Badge variant="default" className="bg-purple-600 dark:bg-purple-500">
                               Featured
                             </Badge>
                           )}
                           {task.completed && (
-                            <CheckCircle2 className="size-5 text-green-600" />
+                            <CheckCircle2 className="size-5 text-green-600 dark:text-green-400" />
                           )}
                         </div>
-                        <p className="text-sm text-gray-600 mb-2">{task.description}</p>
-                        <Badge variant="outline">{task.type}</Badge>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{task.description}</p>
+                        <Badge variant="outline" className="dark:border-white/20 dark:text-gray-300">{task.type}</Badge>
                       </div>
-                      <div className="flex items-center gap-1 text-purple-600 font-semibold ml-4">
+                      <div className="flex items-center gap-1 text-purple-600 dark:text-purple-400 font-semibold ml-4">
                         <Sparkles className="size-4" />
                         <span>{task.reward}</span>
                       </div>
@@ -189,8 +189,8 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                     {task.progress !== undefined && task.total && (
                       <div className="mt-3">
                         <div className="flex justify-between text-sm mb-1">
-                          <span className="text-gray-600">Progress</span>
-                          <span className="font-medium">
+                          <span className="text-gray-600 dark:text-gray-400">Progress</span>
+                          <span className="font-medium dark:text-gray-300">
                             {task.progress}/{task.total}
                           </span>
                         </div>
@@ -201,7 +201,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                       <div className="mt-3">
                         <Button
                           size="sm"
-                          className="w-full"
+                          className="w-full dark:border-white/20"
                           variant={task.featured ? "default" : "outline"}
                           onClick={() => {
                             if (task.id === 3) {
@@ -229,16 +229,16 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               <CardContent className="space-y-4">
                 {recentActivity.map((activity) => (
                   <div key={activity.id} className="flex items-start gap-3">
-                    <div className="bg-green-100 size-10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <CheckCircle2 className="size-5 text-green-600" />
+                    <div className="bg-green-100 dark:bg-green-900/30 size-10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle2 className="size-5 text-green-600 dark:text-green-400" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium">{activity.action}</p>
-                      <div className="flex items-center gap-1 text-purple-600 text-sm font-medium mt-1">
+                      <p className="text-sm font-medium dark:text-white">{activity.action}</p>
+                      <div className="flex items-center gap-1 text-purple-600 dark:text-purple-400 text-sm font-medium mt-1">
                         <Sparkles className="size-3" />
                         <span>+{activity.crystals}</span>
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{activity.time}</p>
                     </div>
                   </div>
                 ))}
@@ -249,24 +249,24 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             <Card className="mt-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Gift className="size-5 text-purple-600" />
+                  <Gift className="size-5 text-purple-600 dark:text-purple-400" />
                   Upcoming Rewards
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="p-3 bg-purple-50 rounded-lg">
-                    <p className="font-medium mb-1">VIP Badge</p>
-                    <p className="text-sm text-gray-600 mb-2">Unlock at 5,000 crystals</p>
+                  <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-500/20">
+                    <p className="font-medium mb-1 dark:text-white">VIP Badge</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Unlock at 5,000 crystals</p>
                     <Progress value={49} className="h-2" />
                   </div>
-                  <div className="p-3 bg-blue-50 rounded-lg">
-                    <p className="font-medium mb-1">Premium Access</p>
-                    <p className="text-sm text-gray-600">Unlock at Level 10</p>
+                  <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-500/20">
+                    <p className="font-medium mb-1 dark:text-white">Premium Access</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Unlock at Level 10</p>
                   </div>
                   <Button 
                     variant="outline" 
-                    className="w-full mt-3"
+                    className="w-full mt-3 dark:border-white/20 dark:hover:bg-white/10"
                     onClick={() => onNavigate("rewards")}
                   >
                     View All Rewards

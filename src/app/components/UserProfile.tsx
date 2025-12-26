@@ -67,11 +67,17 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-black">
       {/* Navigation */}
       <Navigation onNavigate={onNavigate} currentPage="profile" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2 dark:text-white">Profile</h1>
+          <p className="text-gray-600 dark:text-gray-400">Manage your account and view your progress</p>
+        </div>
+
         {/* Profile Header */}
         <Card className="mb-8">
           <CardContent className="pt-6">
@@ -361,10 +367,10 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
                     .map((achievement) => (
                       <div
                         key={achievement.id}
-                        className="flex flex-col items-center p-3 bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg"
+                        className="flex flex-col items-center p-3 bg-gradient-to-br from-purple-50/80 to-blue-50/80 dark:from-purple-900/20 dark:to-blue-900/20 backdrop-blur-sm rounded-lg"
                       >
                         <div className="text-2xl mb-1">{achievement.icon}</div>
-                        <p className="text-xs text-center font-medium">{achievement.name}</p>
+                        <p className="text-xs text-center font-medium dark:text-white">{achievement.name}</p>
                       </div>
                     ))}
                 </div>

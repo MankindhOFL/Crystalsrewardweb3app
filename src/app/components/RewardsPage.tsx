@@ -165,31 +165,31 @@ export function RewardsPage({ onNavigate }: RewardsPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-black">
       <Navigation onNavigate={onNavigate} currentPage="rewards" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Rewards Marketplace</h1>
-          <p className="text-gray-600">Redeem your crystals for exclusive NFT whitelist spots and tokens</p>
+          <h1 className="text-3xl font-bold mb-2 dark:text-white">Rewards Marketplace</h1>
+          <p className="text-gray-600 dark:text-gray-400">Redeem your crystals for exclusive NFT whitelist spots and tokens</p>
         </div>
 
         {/* Crystal Balance Card */}
-        <Card className="mb-8 border-2 border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+        <Card className="mb-8 border-2 border-purple-200 dark:border-purple-500/20 bg-gradient-to-r from-purple-50/80 to-blue-50/80 dark:from-purple-900/20 dark:to-blue-900/20">
           <CardContent className="pt-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="bg-purple-600 size-16 rounded-full flex items-center justify-center">
+                <div className="bg-purple-600 dark:bg-purple-500 size-16 rounded-full flex items-center justify-center">
                   <Sparkles className="size-8 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Your Crystal Balance</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Your Crystal Balance</p>
                   <div className="flex items-center gap-2">
-                    <span className="text-4xl font-bold text-purple-600">
+                    <span className="text-4xl font-bold text-purple-600 dark:text-purple-400">
                       {userCrystals.toLocaleString()}
                     </span>
-                    <Sparkles className="size-6 text-purple-600" />
+                    <Sparkles className="size-6 text-purple-600 dark:text-purple-400" />
                   </div>
                 </div>
               </div>
@@ -335,14 +335,14 @@ export function RewardsPage({ onNavigate }: RewardsPageProps) {
                     <CardDescription>{token.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="p-3 bg-blue-50 rounded-lg">
-                      <p className="text-sm text-gray-600 mb-1">Exchange Rate</p>
+                    <div className="p-3 bg-blue-50/80 dark:bg-blue-900/20 rounded-lg backdrop-blur-sm">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Exchange Rate</p>
                       <div className="flex items-center gap-2 text-lg font-semibold">
-                        <span className="text-purple-600">1</span>
-                        <Sparkles className="size-4 text-purple-600" />
+                        <span className="text-purple-600 dark:text-purple-400">1</span>
+                        <Sparkles className="size-4 text-purple-600 dark:text-purple-400" />
                         <ArrowRight className="size-4 text-gray-400" />
-                        <span className="text-blue-600">{token.exchangeRate}</span>
-                        <span className="text-blue-600">{token.symbol}</span>
+                        <span className="text-blue-600 dark:text-blue-400">{token.exchangeRate}</span>
+                        <span className="text-blue-600 dark:text-blue-400">{token.symbol}</span>
                       </div>
                     </div>
 
@@ -356,16 +356,16 @@ export function RewardsPage({ onNavigate }: RewardsPageProps) {
                         max={Math.min(token.maxAmount, userCrystals)}
                         onChange={(e) => setTokenAmount(e.target.value)}
                       />
-                      <div className="flex justify-between text-xs text-gray-600">
+                      <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400">
                         <span>Min: {token.minAmount}</span>
                         <span>Max: {Math.min(token.maxAmount, userCrystals).toLocaleString()}</span>
                       </div>
                     </div>
 
                     {tokenAmount && Number(tokenAmount) >= token.minAmount && (
-                      <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                        <p className="text-sm text-gray-600 mb-1">You will receive:</p>
-                        <div className="flex items-center gap-2 text-xl font-bold text-green-600">
+                      <div className="p-3 bg-green-50/80 dark:bg-green-900/20 border border-green-200 dark:border-green-500/20 rounded-lg backdrop-blur-sm">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">You will receive:</p>
+                        <div className="flex items-center gap-2 text-xl font-bold text-green-600 dark:text-green-400">
                           <span>
                             {calculateTokenOutput(Number(tokenAmount), token.exchangeRate).toLocaleString()}
                           </span>
@@ -393,13 +393,13 @@ export function RewardsPage({ onNavigate }: RewardsPageProps) {
             </div>
 
             {/* Info Card */}
-            <Card className="mt-6 border-blue-200 bg-blue-50">
+            <Card className="mt-6 border-blue-200 dark:border-blue-500/20 bg-blue-50/80 dark:bg-blue-900/20 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
-                  <AlertCircle className="size-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <AlertCircle className="size-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-medium text-blue-900 mb-1">Token Swap Information</p>
-                    <p className="text-sm text-blue-800">
+                    <p className="font-medium text-blue-900 dark:text-blue-300 mb-1">Token Swap Information</p>
+                    <p className="text-sm text-blue-800 dark:text-blue-400">
                       Swapped tokens will be transferred to your connected wallet within 24 hours. 
                       Make sure you have a wallet address connected to your account.
                     </p>

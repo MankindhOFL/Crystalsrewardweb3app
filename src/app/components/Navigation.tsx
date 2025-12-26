@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "./ui/sheet";
-import { Sparkles, User, LogOut, Menu, Home, LayoutDashboard, Gift } from "lucide-react";
+import { Sparkles, User, LogOut, Menu, Home, LayoutDashboard, Gift, Moon, Sun } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
 
 interface NavigationProps {
   onNavigate: (page: string) => void;
@@ -10,6 +11,7 @@ interface NavigationProps {
 
 export function Navigation({ onNavigate, currentPage }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const handleNavigate = (page: string) => {
     onNavigate(page);
@@ -17,48 +19,72 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
   };
 
   return (
-    <nav className="border-b bg-white sticky top-0 z-50">
+    <nav className="border-b border-white/20 dark:border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <Sparkles className="size-8 text-purple-600" />
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <Sparkles className="size-8 text-purple-600 dark:text-purple-400" />
+            <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
               CrystalQuest
             </span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" onClick={() => onNavigate("home")}>
+          <div className="hidden md:flex items-center gap-2">
+            <Button variant="ghost" onClick={() => onNavigate("home")} className="dark:hover:bg-white/10">
               Home
             </Button>
-            <Button variant="ghost" onClick={() => onNavigate("dashboard")}>
+            <Button variant="ghost" onClick={() => onNavigate("dashboard")} className="dark:hover:bg-white/10">
               Dashboard
             </Button>
-            <Button variant="ghost" onClick={() => onNavigate("rewards")}>
+            <Button variant="ghost" onClick={() => onNavigate("rewards")} className="dark:hover:bg-white/10">
               <Gift className="size-4 mr-2" />
               Rewards
             </Button>
-            <Button variant="ghost" onClick={() => onNavigate("profile")}>
+            <Button variant="ghost" onClick={() => onNavigate("profile")} className="dark:hover:bg-white/10">
               <User className="size-4 mr-2" />
               Profile
             </Button>
-            <Button variant="outline" size="sm">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="dark:hover:bg-white/10"
+            >
+              {theme === "light" ? (
+                <Moon className="size-5" />
+              ) : (
+                <Sun className="size-5" />
+              )}
+            </Button>
+            <Button variant="outline" size="sm" className="dark:border-white/20 dark:hover:bg-white/10">
               <LogOut className="size-4 mr-2" />
               Logout
             </Button>
           </div>
 
           {/* Mobile Hamburger Menu */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="dark:hover:bg-white/10"
+            >
+              {theme === "light" ? (
+                <Moon className="size-5" />
+              ) : (
+                <Sun className="size-5" />
+              )}
+            </Button>
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="dark:hover:bg-white/10">
                   <Menu className="size-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-64">
+              <SheetContent side="right" className="w-64 bg-white/95 dark:bg-black/95 backdrop-blur-xl border-white/20 dark:border-white/10">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <SheetDescription className="sr-only">
                   Navigate to different sections of the app
@@ -66,7 +92,7 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
                 <div className="flex flex-col gap-4 mt-8">
                   <Button
                     variant={currentPage === "home" ? "default" : "ghost"}
-                    className="justify-start"
+                    className="justify-start dark:hover:bg-white/10"
                     onClick={() => handleNavigate("home")}
                   >
                     <Home className="size-5 mr-3" />
@@ -74,7 +100,7 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
                   </Button>
                   <Button
                     variant={currentPage === "dashboard" ? "default" : "ghost"}
-                    className="justify-start"
+                    className="justify-start dark:hover:bg-white/10"
                     onClick={() => handleNavigate("dashboard")}
                   >
                     <LayoutDashboard className="size-5 mr-3" />
@@ -82,7 +108,7 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
                   </Button>
                   <Button
                     variant={currentPage === "rewards" ? "default" : "ghost"}
-                    className="justify-start"
+                    className="justify-start dark:hover:bg-white/10"
                     onClick={() => handleNavigate("rewards")}
                   >
                     <Gift className="size-5 mr-3" />
@@ -90,16 +116,16 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
                   </Button>
                   <Button
                     variant={currentPage === "profile" ? "default" : "ghost"}
-                    className="justify-start"
+                    className="justify-start dark:hover:bg-white/10"
                     onClick={() => handleNavigate("profile")}
                   >
                     <User className="size-5 mr-3" />
                     Profile
                   </Button>
-                  <div className="border-t pt-4 mt-4">
+                  <div className="border-t border-white/20 dark:border-white/10 pt-4 mt-4">
                     <Button
                       variant="outline"
-                      className="w-full justify-start"
+                      className="w-full justify-start dark:border-white/20 dark:hover:bg-white/10"
                       onClick={() => setIsOpen(false)}
                     >
                       <LogOut className="size-5 mr-3" />
