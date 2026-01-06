@@ -63,37 +63,35 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
 
   const handleSaveProfile = () => {
     setIsEditing(false);
-    // Here you would typically save to backend
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-black">
-      {/* Navigation */}
+    <div className="min-h-screen bg-neutral-50 dark:bg-black">
       <Navigation onNavigate={onNavigate} currentPage="profile" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2 dark:text-white">Profile</h1>
-          <p className="text-gray-600 dark:text-gray-400">Manage your account and view your progress</p>
+        <div className="mb-12">
+          <h1 className="text-3xl font-semibold mb-2 text-neutral-900 dark:text-white">Profile</h1>
+          <p className="text-neutral-600 dark:text-neutral-400">Manage your account and view your progress</p>
         </div>
 
         {/* Profile Header */}
-        <Card className="mb-8">
+        <Card className="mb-12">
           <CardContent className="pt-6">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-              <Avatar className="size-24 border-4 border-purple-100">
+              <Avatar className="size-24 border-4 border-neutral-100 dark:border-neutral-800">
                 <AvatarImage src={profile.avatarUrl} />
-                <AvatarFallback className="bg-gradient-to-br from-purple-600 to-blue-600 text-white text-2xl">
+                <AvatarFallback className="bg-blue-600 dark:bg-blue-500 text-white text-2xl">
                   {profile.name.split(" ").map((n) => n[0]).join("")}
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-3xl font-bold">{profile.name}</h1>
-                  <Badge className="bg-purple-600">Level {stats.level}</Badge>
+                  <h1 className="text-3xl font-semibold text-neutral-900 dark:text-white">{profile.name}</h1>
+                  <Badge className="bg-blue-600 dark:bg-blue-500">Level {stats.level}</Badge>
                 </div>
-                <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
+                <div className="flex flex-wrap gap-4 text-sm text-neutral-600 dark:text-neutral-400 mb-4">
                   <div className="flex items-center gap-1">
                     <Mail className="size-4" />
                     <span>{profile.email}</span>
@@ -103,7 +101,7 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
                     <span>Joined {profile.joinDate}</span>
                   </div>
                 </div>
-                <p className="text-gray-600">{profile.bio}</p>
+                <p className="text-neutral-600 dark:text-neutral-400">{profile.bio}</p>
               </div>
               <Button
                 variant={isEditing ? "outline" : "default"}
@@ -129,7 +127,7 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
           {/* Main Content */}
           <div className="lg:col-span-2">
             <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-3 mb-6">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="achievements">Achievements</TabsTrigger>
                 <TabsTrigger value="history">History</TabsTrigger>
@@ -177,66 +175,61 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
                   </Card>
                 ) : (
                   <>
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-2 gap-6">
                       <Card>
-                        <CardHeader className="pb-3">
-                          <CardTitle className="text-sm font-medium text-gray-600">
-                            Total Crystals
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex items-center gap-2">
-                            <Sparkles className="size-8 text-purple-600" />
-                            <div className="text-3xl font-bold text-purple-600">
-                              {stats.totalCrystals.toLocaleString()}
+                        <CardContent className="pt-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="size-12 rounded-xl bg-blue-50 dark:bg-blue-950/30 flex items-center justify-center">
+                              <Sparkles className="size-6 text-blue-600 dark:text-blue-400" />
                             </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-
-                      <Card>
-                        <CardHeader className="pb-3">
-                          <CardTitle className="text-sm font-medium text-gray-600">
-                            Global Rank
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex items-center gap-2">
-                            <Award className="size-8 text-yellow-600" />
                             <div>
-                              <div className="text-3xl font-bold">#{stats.rank}</div>
-                              <p className="text-sm text-gray-600">
-                                of {stats.totalUsers.toLocaleString()}
-                              </p>
+                              <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Total Crystals</div>
+                              <div className="text-2xl font-semibold text-neutral-900 dark:text-white">
+                                {stats.totalCrystals.toLocaleString()}
+                              </div>
                             </div>
                           </div>
                         </CardContent>
                       </Card>
 
                       <Card>
-                        <CardHeader className="pb-3">
-                          <CardTitle className="text-sm font-medium text-gray-600">
-                            Tasks Completed
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex items-center gap-2">
-                            <TrendingUp className="size-8 text-green-600" />
-                            <div className="text-3xl font-bold">{stats.tasksCompleted}</div>
+                        <CardContent className="pt-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="size-12 rounded-xl bg-green-50 dark:bg-green-950/30 flex items-center justify-center">
+                              <Award className="size-6 text-green-600 dark:text-green-400" />
+                            </div>
+                            <div>
+                              <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Global Rank</div>
+                              <div className="text-2xl font-semibold text-neutral-900 dark:text-white">#{stats.rank}</div>
+                            </div>
                           </div>
                         </CardContent>
                       </Card>
 
                       <Card>
-                        <CardHeader className="pb-3">
-                          <CardTitle className="text-sm font-medium text-gray-600">
-                            Referrals
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex items-center gap-2">
-                            <Users className="size-8 text-blue-600" />
-                            <div className="text-3xl font-bold">{stats.referrals}</div>
+                        <CardContent className="pt-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="size-12 rounded-xl bg-purple-50 dark:bg-purple-950/30 flex items-center justify-center">
+                              <TrendingUp className="size-6 text-purple-600 dark:text-purple-400" />
+                            </div>
+                            <div>
+                              <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Tasks Completed</div>
+                              <div className="text-2xl font-semibold text-neutral-900 dark:text-white">{stats.tasksCompleted}</div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card>
+                        <CardContent className="pt-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="size-12 rounded-xl bg-orange-50 dark:bg-orange-950/30 flex items-center justify-center">
+                              <Users className="size-6 text-orange-600 dark:text-orange-400" />
+                            </div>
+                            <div>
+                              <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Referrals</div>
+                              <div className="text-2xl font-semibold text-neutral-900 dark:text-white">{stats.referrals}</div>
+                            </div>
                           </div>
                         </CardContent>
                       </Card>
@@ -251,7 +244,7 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
                       </CardHeader>
                       <CardContent>
                         <Progress value={81.67} className="h-3 mb-2" />
-                        <div className="flex justify-between text-sm text-gray-600">
+                        <div className="flex justify-between text-sm text-neutral-600 dark:text-neutral-400">
                           <span>Level {stats.level}</span>
                           <span>Level {stats.level + 1}</span>
                         </div>
@@ -272,19 +265,19 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
                       {achievements.map((achievement) => (
                         <div
                           key={achievement.id}
-                          className={`p-4 border rounded-lg ${
+                          className={`p-5 border rounded-xl ${
                             achievement.unlocked
-                              ? "bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200"
-                              : "bg-gray-50 opacity-60"
+                              ? "bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900/50"
+                              : "bg-neutral-50 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 opacity-50"
                           }`}
                         >
                           <div className="flex items-start gap-3">
                             <div className="text-3xl">{achievement.icon}</div>
                             <div className="flex-1">
-                              <h3 className="font-semibold mb-1">{achievement.name}</h3>
-                              <p className="text-sm text-gray-600">{achievement.description}</p>
+                              <h3 className="font-semibold mb-1 text-neutral-900 dark:text-white">{achievement.name}</h3>
+                              <p className="text-sm text-neutral-600 dark:text-neutral-400">{achievement.description}</p>
                               {achievement.unlocked && (
-                                <Badge variant="outline" className="mt-2 border-green-600 text-green-600">
+                                <Badge variant="outline" className="mt-2 border-green-600 text-green-600 dark:border-green-400 dark:text-green-400">
                                   Unlocked
                                 </Badge>
                               )}
@@ -304,14 +297,14 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
                     <CardDescription>Your recent crystal transactions</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {crystalHistory.map((item) => (
-                        <div key={item.id} className="flex items-center justify-between pb-4 border-b last:border-0">
+                        <div key={item.id} className="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-neutral-700 last:border-0">
                           <div className="flex-1">
-                            <p className="font-medium">{item.action}</p>
-                            <p className="text-sm text-gray-600">{item.date}</p>
+                            <p className="font-medium text-neutral-900 dark:text-white">{item.action}</p>
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400">{item.date}</p>
                           </div>
-                          <div className="flex items-center gap-1 text-green-600 font-semibold">
+                          <div className="flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold">
                             <Sparkles className="size-4" />
                             <span>+{item.amount}</span>
                           </div>
@@ -332,22 +325,22 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">This Week</span>
-                  <div className="flex items-center gap-1 text-purple-600 font-semibold">
+                  <span className="text-neutral-600 dark:text-neutral-400">This Week</span>
+                  <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold">
                     <Sparkles className="size-4" />
                     <span>+325</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">This Month</span>
-                  <div className="flex items-center gap-1 text-purple-600 font-semibold">
+                  <span className="text-neutral-600 dark:text-neutral-400">This Month</span>
+                  <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold">
                     <Sparkles className="size-4" />
                     <span>+1,250</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">All Time</span>
-                  <div className="flex items-center gap-1 text-purple-600 font-semibold">
+                  <span className="text-neutral-600 dark:text-neutral-400">All Time</span>
+                  <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold">
                     <Sparkles className="size-4" />
                     <span>{stats.totalCrystals.toLocaleString()}</span>
                   </div>
@@ -367,10 +360,10 @@ export function UserProfile({ onNavigate }: UserProfileProps) {
                     .map((achievement) => (
                       <div
                         key={achievement.id}
-                        className="flex flex-col items-center p-3 bg-gradient-to-br from-purple-50/80 to-blue-50/80 dark:from-purple-900/20 dark:to-blue-900/20 backdrop-blur-sm rounded-lg"
+                        className="flex flex-col items-center p-3 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/50 rounded-xl"
                       >
                         <div className="text-2xl mb-1">{achievement.icon}</div>
-                        <p className="text-xs text-center font-medium dark:text-white">{achievement.name}</p>
+                        <p className="text-xs text-center font-medium text-neutral-900 dark:text-white">{achievement.name}</p>
                       </div>
                     ))}
                 </div>

@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { Sparkles, Trophy, Users, Gift } from "lucide-react";
+import { Sparkles, CheckCircle, Users, Gift } from "lucide-react";
 import { Navigation } from "./Navigation";
 
 interface HomePageProps {
@@ -9,38 +9,35 @@ interface HomePageProps {
 
 export function HomePage({ onNavigate }: HomePageProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 dark:from-black dark:via-black dark:to-black">
-      {/* Navigation */}
+    <div className="min-h-screen bg-neutral-50 dark:bg-black">
       <Navigation onNavigate={onNavigate} currentPage="home" />
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="max-w-4xl mx-auto px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/80 dark:bg-purple-900/20 backdrop-blur-sm border border-purple-200 dark:border-purple-500/20 mb-6">
-            <Sparkles className="size-4 text-purple-600 dark:text-purple-400" />
-            <span className="text-sm font-medium text-purple-900 dark:text-purple-300">Start Earning Crystals Today</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 dark:bg-green-950/30 border border-green-100 dark:border-green-900/50 mb-8">
+            <Sparkles className="size-4 text-green-600 dark:text-green-400" />
+            <span className="text-sm text-green-900 dark:text-green-300">Earn crystals for every project</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
-            Earn Rewards with<br />CrystalQuest
+          <h1 className="text-5xl md:text-6xl font-semibold mb-6 text-neutral-900 dark:text-white tracking-tight">
+            Join projects.<br />Earn rewards.
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-            Complete tasks, refer friends, and join exciting projects to earn crystals.
-            Redeem your crystals for exclusive rewards and tokens.
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Join CrystalQuest to earn crystals by participating in exclusive Web3 projects, accessing NFT whitelists, and claiming token allocations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
               onClick={() => onNavigate("dashboard")}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 dark:from-purple-500 dark:to-blue-500"
+              className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white shadow-sm"
             >
-              <Sparkles className="size-5 mr-2" />
               Get Started
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={() => onNavigate("rewards")}
-              className="border-purple-200 dark:border-purple-500/30 dark:text-purple-300 dark:hover:bg-white/5"
+              className="border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white"
             >
               View Rewards
             </Button>
@@ -49,40 +46,40 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* Features */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="max-w-5xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="border-2 border-purple-200 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/40 transition-colors">
+          <Card>
             <CardContent className="pt-6">
-              <div className="bg-purple-100 dark:bg-purple-900/30 size-12 rounded-lg flex items-center justify-center mb-4">
-                <Trophy className="size-6 text-purple-600 dark:text-purple-400" />
+              <div className="size-12 rounded-xl bg-green-50 dark:bg-green-950/30 flex items-center justify-center mb-6">
+                <CheckCircle className="size-6 text-green-600 dark:text-green-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-white">Complete Tasks</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Earn crystals by completing simple tasks and challenges. The harder the task, the more crystals you earn!
+              <h3 className="text-xl font-semibold mb-3 text-neutral-900 dark:text-white">Join Projects</h3>
+              <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Participate in exclusive Web3 projects and campaigns to earn massive crystal rewards.
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-blue-200 dark:border-blue-500/20 hover:border-blue-300 dark:hover:border-blue-400/40 transition-colors">
+          <Card>
             <CardContent className="pt-6">
-              <div className="bg-blue-100 dark:bg-blue-900/30 size-12 rounded-lg flex items-center justify-center mb-4">
-                <Users className="size-6 text-blue-600 dark:text-blue-400" />
+              <div className="size-12 rounded-xl bg-purple-50 dark:bg-purple-950/30 flex items-center justify-center mb-6">
+                <Users className="size-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-white">Refer Friends</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Invite your friends and earn bonus crystals for every successful referral. Grow together!
+              <h3 className="text-xl font-semibold mb-3 text-neutral-900 dark:text-white">NFT Whitelist</h3>
+              <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Access guaranteed whitelist spots for trending NFT collections and exclusive mints.
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-indigo-200 dark:border-indigo-500/20 hover:border-indigo-300 dark:hover:border-indigo-400/40 transition-colors">
+          <Card>
             <CardContent className="pt-6">
-              <div className="bg-indigo-100 dark:bg-indigo-900/30 size-12 rounded-lg flex items-center justify-center mb-4">
-                <Gift className="size-6 text-indigo-600 dark:text-indigo-400" />
+              <div className="size-12 rounded-xl bg-orange-50 dark:bg-orange-950/30 flex items-center justify-center mb-6">
+                <Gift className="size-6 text-orange-600 dark:text-orange-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-white">Join Projects</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Participate in exciting projects and campaigns to earn massive crystal rewards and exclusive perks.
+              <h3 className="text-xl font-semibold mb-3 text-neutral-900 dark:text-white">Token Allocations</h3>
+              <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Use your crystals to secure early token allocations in upcoming TGEs.
               </p>
             </CardContent>
           </Card>
@@ -90,21 +87,21 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* Stats Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <Card className="bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-500 dark:to-blue-500 border-0 text-white">
-          <CardContent className="py-12">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
+      <section className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+        <Card>
+          <CardContent className="py-16">
+            <div className="grid md:grid-cols-3 gap-12 text-center">
               <div>
-                <div className="text-4xl font-bold mb-2">50K+</div>
-                <div className="text-purple-100 dark:text-purple-200">Active Users</div>
+                <div className="text-4xl font-semibold mb-2 text-neutral-900 dark:text-white">50K+</div>
+                <div className="text-neutral-600 dark:text-neutral-400">Active Users</div>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">2M+</div>
-                <div className="text-purple-100 dark:text-purple-200">Crystals Earned</div>
+                <div className="text-4xl font-semibold mb-2 text-neutral-900 dark:text-white">2M+</div>
+                <div className="text-neutral-600 dark:text-neutral-400">Crystals Earned</div>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">1K+</div>
-                <div className="text-purple-100 dark:text-purple-200">Tasks Completed</div>
+                <div className="text-4xl font-semibold mb-2 text-neutral-900 dark:text-white">100+</div>
+                <div className="text-neutral-600 dark:text-neutral-400">Active Projects</div>
               </div>
             </div>
           </CardContent>
@@ -112,27 +109,33 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-500 dark:to-blue-500 rounded-2xl p-12 text-center text-white backdrop-blur-xl">
-          <h2 className="text-4xl font-bold mb-4">Ready to Start Earning?</h2>
-          <p className="text-xl text-purple-100 dark:text-purple-200 mb-8 max-w-2xl mx-auto">
-            Join thousands of users already earning crystals and unlocking amazing rewards.
-          </p>
-          <Button size="lg" variant="secondary" onClick={() => onNavigate("dashboard")}>
-            Get Started Free
-          </Button>
-        </div>
+      <section className="max-w-4xl mx-auto px-6 lg:px-8 py-20">
+        <Card className="bg-neutral-900 dark:bg-neutral-800 border-neutral-800 dark:border-neutral-700">
+          <CardContent className="py-16 text-center">
+            <h2 className="text-4xl font-semibold mb-4 text-white">Ready to start earning?</h2>
+            <p className="text-xl text-neutral-400 mb-10 max-w-2xl mx-auto">
+              Join thousands of users already earning crystals and unlocking amazing rewards.
+            </p>
+            <Button 
+              size="lg" 
+              onClick={() => onNavigate("dashboard")}
+              className="bg-white hover:bg-neutral-100 text-neutral-900"
+            >
+              Get Started Free
+            </Button>
+          </CardContent>
+        </Card>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/20 dark:border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-xl mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 mt-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <Sparkles className="size-6 text-purple-600 dark:text-purple-400" />
-              <span className="font-semibold text-gray-900 dark:text-white">CrystalQuest</span>
+              <Sparkles className="size-5 text-green-600 dark:text-green-500" />
+              <span className="font-semibold text-neutral-900 dark:text-white">CrystalQuest</span>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">© 2025 CrystalQuest. All rights reserved.</p>
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm">© 2025 CrystalQuest. All rights reserved.</p>
           </div>
         </div>
       </footer>

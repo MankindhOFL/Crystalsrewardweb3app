@@ -19,38 +19,53 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
   };
 
   return (
-    <nav className="border-b border-white/20 dark:border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-xl sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-14">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Sparkles className="size-8 text-purple-600 dark:text-purple-400" />
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
+          <button onClick={() => onNavigate("home")} className="flex items-center gap-2 -ml-2 px-2 py-1 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <Sparkles className="size-5 text-green-600 dark:text-green-500" />
+            <span className="font-semibold text-neutral-900 dark:text-white">
               CrystalQuest
             </span>
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2">
-            <Button variant="ghost" onClick={() => onNavigate("home")} className="dark:hover:bg-white/10">
+          <div className="hidden md:flex items-center gap-1">
+            <Button 
+              variant="ghost" 
+              onClick={() => onNavigate("home")} 
+              className="text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            >
               Home
             </Button>
-            <Button variant="ghost" onClick={() => onNavigate("dashboard")} className="dark:hover:bg-white/10">
+            <Button 
+              variant="ghost" 
+              onClick={() => onNavigate("dashboard")} 
+              className="text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            >
               Dashboard
             </Button>
-            <Button variant="ghost" onClick={() => onNavigate("rewards")} className="dark:hover:bg-white/10">
-              <Gift className="size-4 mr-2" />
+            <Button 
+              variant="ghost" 
+              onClick={() => onNavigate("rewards")} 
+              className="text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            >
               Rewards
             </Button>
-            <Button variant="ghost" onClick={() => onNavigate("profile")} className="dark:hover:bg-white/10">
-              <User className="size-4 mr-2" />
+            <Button 
+              variant="ghost" 
+              onClick={() => onNavigate("profile")} 
+              className="text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            >
               Profile
             </Button>
+            <div className="w-px h-6 bg-neutral-200 dark:bg-neutral-700 mx-2" />
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="dark:hover:bg-white/10"
+              className="text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
             >
               {theme === "light" ? (
                 <Moon className="size-5" />
@@ -58,19 +73,15 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
                 <Sun className="size-5" />
               )}
             </Button>
-            <Button variant="outline" size="sm" className="dark:border-white/20 dark:hover:bg-white/10">
-              <LogOut className="size-4 mr-2" />
-              Logout
-            </Button>
           </div>
 
-          {/* Mobile Hamburger Menu */}
+          {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="dark:hover:bg-white/10"
+              className="text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
             >
               {theme === "light" ? (
                 <Moon className="size-5" />
@@ -80,19 +91,19 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
             </Button>
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="dark:hover:bg-white/10">
-                  <Menu className="size-6" />
+                <Button variant="ghost" size="icon" className="text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800">
+                  <Menu className="size-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-64 bg-white/95 dark:bg-black/95 backdrop-blur-xl border-white/20 dark:border-white/10">
+              <SheetContent side="right" className="w-64 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <SheetDescription className="sr-only">
                   Navigate to different sections of the app
                 </SheetDescription>
-                <div className="flex flex-col gap-4 mt-8">
+                <div className="flex flex-col gap-2 mt-8">
                   <Button
                     variant={currentPage === "home" ? "default" : "ghost"}
-                    className="justify-start dark:hover:bg-white/10"
+                    className="justify-start"
                     onClick={() => handleNavigate("home")}
                   >
                     <Home className="size-5 mr-3" />
@@ -100,7 +111,7 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
                   </Button>
                   <Button
                     variant={currentPage === "dashboard" ? "default" : "ghost"}
-                    className="justify-start dark:hover:bg-white/10"
+                    className="justify-start"
                     onClick={() => handleNavigate("dashboard")}
                   >
                     <LayoutDashboard className="size-5 mr-3" />
@@ -108,7 +119,7 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
                   </Button>
                   <Button
                     variant={currentPage === "rewards" ? "default" : "ghost"}
-                    className="justify-start dark:hover:bg-white/10"
+                    className="justify-start"
                     onClick={() => handleNavigate("rewards")}
                   >
                     <Gift className="size-5 mr-3" />
@@ -116,16 +127,16 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
                   </Button>
                   <Button
                     variant={currentPage === "profile" ? "default" : "ghost"}
-                    className="justify-start dark:hover:bg-white/10"
+                    className="justify-start"
                     onClick={() => handleNavigate("profile")}
                   >
                     <User className="size-5 mr-3" />
                     Profile
                   </Button>
-                  <div className="border-t border-white/20 dark:border-white/10 pt-4 mt-4">
+                  <div className="border-t border-neutral-200 dark:border-neutral-800 pt-2 mt-2">
                     <Button
-                      variant="outline"
-                      className="w-full justify-start dark:border-white/20 dark:hover:bg-white/10"
+                      variant="ghost"
+                      className="w-full justify-start text-red-600 dark:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20"
                       onClick={() => setIsOpen(false)}
                     >
                       <LogOut className="size-5 mr-3" />

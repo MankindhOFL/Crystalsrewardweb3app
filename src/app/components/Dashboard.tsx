@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
 import { Badge } from "./ui/badge";
-import { Sparkles, Users, CheckCircle2, Gift, TrendingUp, Share2 } from "lucide-react";
+import { Sparkles, Users, CheckCircle2, Rocket, TrendingUp, ArrowRight, Image, Coins } from "lucide-react";
 import { Navigation } from "./Navigation";
 
 interface DashboardProps {
@@ -15,92 +15,148 @@ export function Dashboard({ onNavigate }: DashboardProps) {
   const [level] = useState(7);
   const [nextLevelCrystals] = useState(3000);
 
-  const tasks = [
+  const featuredProjects = [
     {
       id: 1,
-      title: "Complete your profile",
-      description: "Add profile picture and bio",
-      reward: 50,
-      type: "Profile",
-      completed: true,
+      title: "Alpha Launch Campaign",
+      description: "Early access to revolutionary Web3 platform",
+      reward: 1500,
+      participants: 1247,
+      maxParticipants: 5000,
+      featured: true,
+      status: "Active",
+      category: "Launch Event",
     },
     {
       id: 2,
-      title: "Refer 3 friends",
-      description: "Share your referral link with friends",
-      reward: 150,
-      type: "Referral",
-      completed: false,
-      progress: 1,
-      total: 3,
+      title: "DeFi Protocol Beta Testing",
+      description: "Test cutting-edge DeFi features and earn rewards",
+      reward: 2000,
+      participants: 856,
+      maxParticipants: 2000,
+      featured: true,
+      status: "Active",
+      category: "Beta Test",
     },
     {
       id: 3,
-      title: "Join the Alpha Project",
-      description: "Early access to our new project launch",
-      reward: 500,
-      type: "Project",
-      completed: false,
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Daily check-in",
-      description: "Log in for 7 consecutive days",
-      reward: 100,
-      type: "Daily",
-      completed: false,
-      progress: 4,
-      total: 7,
-    },
-    {
-      id: 5,
-      title: "Complete 10 tasks",
-      description: "Finish any 10 tasks to unlock this reward",
-      reward: 200,
-      type: "Achievement",
-      completed: false,
-      progress: 6,
-      total: 10,
+      title: "NFT Marketplace Early Access",
+      description: "Join exclusive marketplace before public launch",
+      reward: 1200,
+      participants: 2100,
+      maxParticipants: 3000,
+      featured: false,
+      status: "Active",
+      category: "Marketplace",
     },
   ];
 
-  const recentActivity = [
-    { id: 1, action: "Completed profile setup", crystals: 50, time: "2 hours ago" },
-    { id: 2, action: "Referred a friend", crystals: 50, time: "1 day ago" },
-    { id: 3, action: "Daily check-in streak", crystals: 25, time: "2 days ago" },
+  const trendingNFTs = [
+    {
+      id: 1,
+      name: "Cosmic Apes",
+      floor: "2.5 ETH",
+      change: "+15%",
+      crystalCost: 1000,
+      image: "🦍",
+    },
+    {
+      id: 2,
+      name: "Cyber Punks",
+      floor: "3.2 ETH",
+      change: "+22%",
+      crystalCost: 2500,
+      image: "👾",
+    },
+    {
+      id: 3,
+      name: "Meta Dragons",
+      floor: "1.8 ETH",
+      change: "+8%",
+      crystalCost: 1500,
+      image: "🐉",
+    },
+  ];
+
+  const upcomingTGEs = [
+    {
+      id: 1,
+      name: "ALPHA Protocol",
+      allocation: "500 tokens",
+      crystalCost: 3000,
+      tgeDate: "Jan 25, 2025",
+      icon: "🚀",
+    },
+    {
+      id: 2,
+      name: "DeFi Nexus",
+      allocation: "750 tokens",
+      crystalCost: 4500,
+      tgeDate: "Feb 1, 2025",
+      icon: "💎",
+    },
+    {
+      id: 3,
+      name: "Meta Coin",
+      allocation: "1000 tokens",
+      crystalCost: 5000,
+      tgeDate: "Feb 10, 2025",
+      icon: "🌐",
+    },
+  ];
+
+  const quickTasks = [
+    {
+      id: 1,
+      title: "Daily check-in",
+      reward: 25,
+      type: "Daily",
+      icon: "✅",
+    },
+    {
+      id: 2,
+      title: "Complete profile",
+      reward: 50,
+      type: "Profile",
+      icon: "👤",
+    },
+    {
+      id: 3,
+      title: "Refer a friend",
+      reward: 50,
+      type: "Referral",
+      icon: "👥",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-black">
-      {/* Navigation */}
+    <div className="min-h-screen bg-neutral-50 dark:bg-black">
       <Navigation onNavigate={onNavigate} currentPage="dashboard" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2 dark:text-white">Dashboard</h1>
-          <p className="text-gray-600 dark:text-gray-400">Track your progress and earn more crystals</p>
+        <div className="mb-12">
+          <h1 className="text-3xl font-semibold mb-2 text-neutral-900 dark:text-white">Dashboard</h1>
+          <p className="text-neutral-600 dark:text-neutral-400">Join projects and earn crystals</p>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        {/* Stats Overview */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Crystals</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center gap-2">
-                <Sparkles className="size-8 text-purple-600 dark:text-purple-400" />
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="size-12 rounded-xl bg-green-50 dark:bg-green-950/30 flex items-center justify-center">
+                  <Sparkles className="size-6 text-green-600 dark:text-green-400" />
+                </div>
                 <div>
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">{crystals.toLocaleString()}</div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Level {level}</p>
+                  <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Total Crystals</div>
+                  <div className="text-2xl font-semibold text-neutral-900 dark:text-white">{crystals.toLocaleString()}</div>
                 </div>
               </div>
-              <div className="mt-4">
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600 dark:text-gray-400">Progress to Level {level + 1}</span>
-                  <span className="font-medium dark:text-gray-300">{crystals}/{nextLevelCrystals}</span>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-neutral-600 dark:text-neutral-400">Level {level}</span>
+                  <span className="text-neutral-900 dark:text-white font-medium">{crystals}/{nextLevelCrystals}</span>
                 </div>
                 <Progress value={(crystals / nextLevelCrystals) * 100} className="h-2" />
               </div>
@@ -108,174 +164,238 @@ export function Dashboard({ onNavigate }: DashboardProps) {
           </Card>
 
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Tasks Completed</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="size-8 text-green-600 dark:text-green-400" />
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="size-12 rounded-xl bg-purple-50 dark:bg-purple-950/30 flex items-center justify-center">
+                  <Rocket className="size-6 text-purple-600 dark:text-purple-400" />
+                </div>
                 <div>
-                  <div className="text-3xl font-bold dark:text-white">12</div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">This month</p>
+                  <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Active Projects</div>
+                  <div className="text-2xl font-semibold text-neutral-900 dark:text-white">3</div>
                 </div>
               </div>
-              <div className="mt-4 flex items-center gap-2 text-sm">
-                <TrendingUp className="size-4 text-green-600 dark:text-green-400" />
-                <span className="text-green-600 dark:text-green-400 font-medium">+25%</span>
-                <span className="text-gray-600 dark:text-gray-400">from last month</span>
+              <div className="text-sm text-neutral-600 dark:text-neutral-400">
+                Join more to earn faster
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Referrals</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center gap-2">
-                <Users className="size-8 text-blue-600 dark:text-blue-400" />
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="size-12 rounded-xl bg-orange-50 dark:bg-orange-950/30 flex items-center justify-center">
+                  <TrendingUp className="size-6 text-orange-600 dark:text-orange-400" />
+                </div>
                 <div>
-                  <div className="text-3xl font-bold dark:text-white">8</div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Friends joined</p>
+                  <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">This Week</div>
+                  <div className="text-2xl font-semibold text-neutral-900 dark:text-white">+325</div>
                 </div>
               </div>
-              <div className="mt-4">
-                <Button variant="outline" size="sm" className="w-full dark:border-white/20 dark:hover:bg-white/10">
-                  <Share2 className="size-4 mr-2" />
-                  Share Referral Link
-                </Button>
+              <div className="text-sm text-green-600 dark:text-green-400 font-medium">
+                ↑ 12% from last week
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Available Tasks */}
-          <div className="lg:col-span-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Available Tasks</CardTitle>
-                <CardDescription>Complete tasks to earn crystals</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {tasks.map((task) => (
-                  <div
-                    key={task.id}
-                    className={`p-4 border rounded-lg ${
-                      task.completed ? "bg-gray-50 dark:bg-white/5 opacity-75" : "bg-white/50 dark:bg-white/5 hover:border-purple-300 dark:hover:border-purple-500/40 border-white/20 dark:border-white/10"
-                    } transition-colors backdrop-blur-sm`}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold dark:text-white">{task.title}</h3>
-                          {task.featured && (
-                            <Badge variant="default" className="bg-purple-600 dark:bg-purple-500">
-                              Featured
-                            </Badge>
-                          )}
-                          {task.completed && (
-                            <CheckCircle2 className="size-5 text-green-600 dark:text-green-400" />
-                          )}
-                        </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{task.description}</p>
-                        <Badge variant="outline" className="dark:border-white/20 dark:text-gray-300">{task.type}</Badge>
-                      </div>
-                      <div className="flex items-center gap-1 text-purple-600 dark:text-purple-400 font-semibold ml-4">
-                        <Sparkles className="size-4" />
-                        <span>{task.reward}</span>
-                      </div>
-                    </div>
-                    {task.progress !== undefined && task.total && (
-                      <div className="mt-3">
-                        <div className="flex justify-between text-sm mb-1">
-                          <span className="text-gray-600 dark:text-gray-400">Progress</span>
-                          <span className="font-medium dark:text-gray-300">
-                            {task.progress}/{task.total}
-                          </span>
-                        </div>
-                        <Progress value={(task.progress / task.total) * 100} className="h-2" />
-                      </div>
-                    )}
-                    {!task.completed && (
-                      <div className="mt-3">
-                        <Button
-                          size="sm"
-                          className="w-full dark:border-white/20"
-                          variant={task.featured ? "default" : "outline"}
-                          onClick={() => {
-                            if (task.id === 3) {
-                              onNavigate("task");
-                            }
-                          }}
-                        >
-                          {task.id === 3 ? "View Project" : "Start Task"}
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Recent Activity */}
-          <div className="lg:col-span-1">
-            <Card>
-              <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-                <CardDescription>Your latest achievements</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {recentActivity.map((activity) => (
-                  <div key={activity.id} className="flex items-start gap-3">
-                    <div className="bg-green-100 dark:bg-green-900/30 size-10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <CheckCircle2 className="size-5 text-green-600 dark:text-green-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium dark:text-white">{activity.action}</p>
-                      <div className="flex items-center gap-1 text-purple-600 dark:text-purple-400 text-sm font-medium mt-1">
-                        <Sparkles className="size-3" />
-                        <span>+{activity.crystals}</span>
-                      </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{activity.time}</p>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Rewards Preview */}
-            <Card className="mt-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Gift className="size-5 text-purple-600 dark:text-purple-400" />
-                  Upcoming Rewards
+        {/* Featured Projects - Main Focus */}
+        <Card className="mb-12 bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-900/50">
+          <CardHeader>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <CardTitle className="text-2xl flex items-center gap-2">
+                  <Rocket className="size-6 text-green-600 dark:text-green-400" />
+                  Featured Projects
                 </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-500/20">
-                    <p className="font-medium mb-1 dark:text-white">VIP Badge</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Unlock at 5,000 crystals</p>
-                    <Progress value={49} className="h-2" />
+                <CardDescription className="text-base mt-2">Join exclusive projects to earn massive crystal rewards</CardDescription>
+              </div>
+              <Badge className="bg-green-600 dark:bg-green-500 text-white w-fit">
+                {featuredProjects.length} Active
+              </Badge>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {featuredProjects.map((project) => (
+              <Card
+                key={project.id}
+                className="bg-white dark:bg-neutral-900 hover:shadow-md transition-shadow cursor-pointer"
+              >
+                <CardContent className="pt-6">
+                  <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-4 gap-4">
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <h3 className="text-lg sm:text-xl font-semibold text-neutral-900 dark:text-white">{project.title}</h3>
+                        {project.featured && (
+                          <Badge className="bg-green-600 dark:bg-green-500 text-white">
+                            Featured
+                          </Badge>
+                        )}
+                        <Badge variant="outline" className="border-neutral-300 dark:border-neutral-700">
+                          {project.category}
+                        </Badge>
+                      </div>
+                      <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mb-4">{project.description}</p>
+                      <div className="flex flex-wrap gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+                        <div className="flex items-center gap-1">
+                          <Users className="size-4" />
+                          <span>{project.participants.toLocaleString()} / {project.maxParticipants.toLocaleString()} joined</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="lg:ml-6 flex lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-4 lg:text-right">
+                      <div>
+                        <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Earn up to</div>
+                        <div className="flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold text-xl">
+                          <Sparkles className="size-5" />
+                          <span>{project.reward.toLocaleString()}</span>
+                        </div>
+                      </div>
+                      <Button
+                        size="lg"
+                        className="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 whitespace-nowrap"
+                        onClick={() => onNavigate("task")}
+                      >
+                        Join Project
+                        <ArrowRight className="size-4 ml-2" />
+                      </Button>
+                    </div>
                   </div>
-                  <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-500/20">
-                    <p className="font-medium mb-1 dark:text-white">Premium Access</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Unlock at Level 10</p>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-neutral-600 dark:text-neutral-400">Participation</span>
+                      <span className="font-medium text-neutral-900 dark:text-white">
+                        {Math.round((project.participants / project.maxParticipants) * 100)}% full
+                      </span>
+                    </div>
+                    <Progress value={(project.participants / project.maxParticipants) * 100} className="h-2" />
                   </div>
-                  <Button 
-                    variant="outline" 
-                    className="w-full mt-3 dark:border-white/20 dark:hover:bg-white/10"
-                    onClick={() => onNavigate("rewards")}
-                  >
-                    View All Rewards
-                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </CardContent>
+        </Card>
+
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          {/* Trending NFTs */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2">
+                  <Image className="size-5 text-neutral-900 dark:text-white" />
+                  Trending NFT Whitelists
+                </CardTitle>
+                <Button variant="ghost" size="sm" onClick={() => onNavigate("rewards")}>
+                  View All
+                  <ArrowRight className="size-4 ml-1" />
+                </Button>
+              </div>
+              <CardDescription>Access exclusive NFT whitelist spots</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {trendingNFTs.map((nft) => (
+                <div
+                  key={nft.id}
+                  className="flex items-center justify-between p-4 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="text-3xl">{nft.image}</div>
+                    <div>
+                      <h4 className="font-semibold text-neutral-900 dark:text-white">{nft.name}</h4>
+                      <div className="flex items-center gap-3 text-sm">
+                        <span className="text-neutral-600 dark:text-neutral-400">Floor: {nft.floor}</span>
+                        <span className="text-green-600 dark:text-green-400 font-medium">{nft.change}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold mb-1">
+                      <Sparkles className="size-4" />
+                      <span>{nft.crystalCost.toLocaleString()}</span>
+                    </div>
+                    <Button size="sm" variant="outline">
+                      Redeem
+                    </Button>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Upcoming TGEs */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2">
+                  <Coins className="size-5 text-neutral-900 dark:text-white" />
+                  Upcoming TGEs
+                </CardTitle>
+                <Button variant="ghost" size="sm" onClick={() => onNavigate("rewards")}>
+                  View All
+                  <ArrowRight className="size-4 ml-1" />
+                </Button>
+              </div>
+              <CardDescription>Secure early token allocations</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {upcomingTGEs.map((tge) => (
+                <div
+                  key={tge.id}
+                  className="flex items-center justify-between p-4 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="text-3xl">{tge.icon}</div>
+                    <div>
+                      <h4 className="font-semibold text-neutral-900 dark:text-white">{tge.name}</h4>
+                      <div className="flex items-center gap-3 text-sm">
+                        <span className="text-neutral-600 dark:text-neutral-400">{tge.allocation}</span>
+                        <span className="text-neutral-500 dark:text-neutral-500">TGE: {tge.tgeDate}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold mb-1">
+                      <Sparkles className="size-4" />
+                      <span>{tge.crystalCost.toLocaleString()}</span>
+                    </div>
+                    <Button size="sm" variant="outline">
+                      Reserve
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
         </div>
+
+        {/* Quick Tasks - Smaller Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Quick Tasks</CardTitle>
+            <CardDescription>Small tasks for bonus crystals</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-3 gap-3">
+              {quickTasks.map((task) => (
+                <div
+                  key={task.id}
+                  className="p-4 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                >
+                  <div className="text-2xl mb-2">{task.icon}</div>
+                  <h4 className="font-medium text-neutral-900 dark:text-white mb-1">{task.title}</h4>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-green-600 dark:text-green-400 text-sm font-medium">
+                      <Sparkles className="size-3" />
+                      <span>+{task.reward}</span>
+                    </div>
+                    <Button size="sm" variant="ghost">
+                      Start
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

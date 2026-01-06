@@ -107,35 +107,31 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
     .reduce((sum, task) => sum + task.reward, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-black">
-      {/* Navigation */}
+    <div className="min-h-screen bg-neutral-50 dark:bg-black">
       <Navigation onNavigate={onNavigate} currentPage="task" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         {/* Back Button */}
-        <Button variant="ghost" className="mb-4 dark:hover:bg-white/10" onClick={() => onNavigate("dashboard")}>
+        <Button variant="ghost" className="mb-8 -ml-2" onClick={() => onNavigate("dashboard")}>
           <ArrowLeft className="size-4 mr-2" />
           Back to Dashboard
         </Button>
 
         {/* Project Header */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 dark:from-purple-500 dark:via-blue-500 dark:to-indigo-500 text-white p-8 mb-8 backdrop-blur-xl">
-          <div className="absolute top-0 right-0 opacity-10">
-            <Sparkles className="size-64" />
-          </div>
-          <div className="relative z-10">
-            <div className="flex items-center gap-2 mb-4">
-              <Badge className="bg-white text-purple-600">{project.status}</Badge>
-              <Badge variant="outline" className="border-white text-white">
+        <Card className="mb-12 bg-neutral-900 dark:bg-neutral-800 border-neutral-800 dark:border-neutral-700 text-white">
+          <CardContent className="py-12">
+            <div className="flex items-center gap-2 mb-6">
+              <Badge className="bg-green-600 text-white">{project.status}</Badge>
+              <Badge variant="outline" className="border-white/30 text-white">
                 {project.category}
               </Badge>
-              <Badge variant="outline" className="border-white text-white">
+              <Badge variant="outline" className="border-white/30 text-white">
                 {project.difficulty}
               </Badge>
             </div>
-            <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-            <p className="text-xl text-purple-100 dark:text-purple-200 mb-6 max-w-3xl">{project.description}</p>
-            <div className="flex flex-wrap gap-6 text-sm">
+            <h1 className="text-4xl font-semibold mb-4">{project.title}</h1>
+            <p className="text-xl text-neutral-300 mb-8 max-w-3xl">{project.description}</p>
+            <div className="flex flex-wrap gap-6 text-sm text-neutral-300">
               <div className="flex items-center gap-2">
                 <Users className="size-5" />
                 <span>{project.totalParticipants.toLocaleString()} participants</span>
@@ -149,41 +145,41 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
                 <span>Up to {project.totalReward} crystals</span>
               </div>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Join Campaign Card */}
             {!joined ? (
-              <Card className="border-2 border-purple-200 dark:border-purple-500/20 bg-purple-50/80 dark:bg-purple-900/20 backdrop-blur-sm">
+              <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900/50">
                 <CardContent className="pt-6">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <h2 className="text-2xl font-bold mb-2 dark:text-white">Join the Campaign</h2>
-                      <p className="text-gray-600 dark:text-gray-400 mb-4">
+                      <h2 className="text-2xl font-semibold mb-2 text-neutral-900 dark:text-white">Join the Campaign</h2>
+                      <p className="text-neutral-600 dark:text-neutral-400 mb-4">
                         Start earning crystals immediately by joining this exclusive campaign. No commitment required!
                       </p>
-                      <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-semibold text-xl mb-4">
+                      <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-xl mb-4">
                         <Sparkles className="size-6" />
                         <span>+500 crystals just for joining!</span>
                       </div>
                     </div>
-                    <Button size="lg" onClick={handleJoinCampaign}>
+                    <Button size="lg" onClick={handleJoinCampaign} className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
                       Join Now
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             ) : (
-              <Card className="border-2 border-green-200 dark:border-green-500/20 bg-green-50/80 dark:bg-green-900/20 backdrop-blur-sm">
+              <Card className="bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-900/50">
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-3 mb-2">
                     <CheckCircle2 className="size-6 text-green-600 dark:text-green-400" />
-                    <h2 className="text-2xl font-bold dark:text-white">You're In!</h2>
+                    <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white">You're In!</h2>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-neutral-600 dark:text-neutral-400">
                     Congratulations! You've joined the campaign and earned 500 crystals. Complete tasks below to earn more!
                   </p>
                 </CardContent>
@@ -201,24 +197,24 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
                     </CardDescription>
                   </div>
                   {joined && (
-                    <div className="flex items-center gap-1 text-purple-600 font-semibold text-lg">
+                    <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-lg">
                       <Sparkles className="size-5" />
                       <span>{totalEarned} earned</span>
                     </div>
                   )}
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-3">
                 {tasks.map((task) => (
                   <div
                     key={task.id}
-                    className={`p-4 border rounded-lg backdrop-blur-sm ${
+                    className={`p-5 border rounded-xl transition-colors ${
                       completedSteps.includes(task.id)
-                        ? "bg-green-50/80 dark:bg-green-900/20 border-green-200 dark:border-green-500/20"
+                        ? "bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-900/50"
                         : joined
-                        ? "bg-white/50 dark:bg-white/5 hover:border-purple-300 dark:hover:border-purple-500/40"
-                        : "bg-gray-50/80 dark:bg-white/5 opacity-60"
-                    } transition-colors`}
+                        ? "bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600"
+                        : "bg-neutral-50 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 opacity-50"
+                    }`}
                   >
                     <div className="flex items-start gap-3">
                       <Checkbox
@@ -229,15 +225,15 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
                       />
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold dark:text-white">{task.title}</h3>
+                          <h3 className="font-semibold text-neutral-900 dark:text-white">{task.title}</h3>
                           {task.required && (
                             <Badge variant="outline" className="text-xs">
                               Required
                             </Badge>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{task.description}</p>
-                        <div className="flex items-center gap-1 text-purple-600 dark:text-purple-400 font-medium text-sm">
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">{task.description}</p>
+                        <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-medium text-sm">
                           <Sparkles className="size-4" />
                           <span>+{task.reward} crystals</span>
                         </div>
@@ -252,7 +248,7 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="size-5 text-purple-600" />
+                  <TrendingUp className="size-5 text-neutral-900 dark:text-white" />
                   Community Milestones
                 </CardTitle>
                 <CardDescription>Everyone gets rewards when milestones are reached</CardDescription>
@@ -261,19 +257,19 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
                 {milestones.map((milestone, index) => (
                   <div key={index} className="flex items-center gap-4">
                     <div
-                      className={`size-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-                        milestone.achieved ? "bg-green-100 dark:bg-green-900/30" : "bg-gray-100 dark:bg-white/10"
+                      className={`size-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                        milestone.achieved ? "bg-green-50 dark:bg-green-950/30" : "bg-neutral-100 dark:bg-neutral-800"
                       }`}
                     >
                       {milestone.achieved ? (
                         <CheckCircle2 className="size-5 text-green-600 dark:text-green-400" />
                       ) : (
-                        <Clock className="size-5 text-gray-400" />
+                        <Clock className="size-5 text-neutral-400" />
                       )}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-medium dark:text-white">
+                        <span className="font-medium text-neutral-900 dark:text-white">
                           {milestone.participants.toLocaleString()} participants
                         </span>
                         {milestone.achieved && (
@@ -282,7 +278,7 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{milestone.reward}</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">{milestone.reward}</p>
                     </div>
                   </div>
                 ))}
@@ -296,7 +292,7 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Gift className="size-5 text-purple-600" />
+                  <Gift className="size-5 text-neutral-900 dark:text-white" />
                   Reward Breakdown
                 </CardTitle>
               </CardHeader>
@@ -305,18 +301,18 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
                   <div key={index} className="flex items-start gap-3">
                     <div className="text-2xl">{reward.icon}</div>
                     <div className="flex-1">
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{reward.action}</p>
-                      <div className="flex items-center gap-1 text-purple-600 dark:text-purple-400 font-semibold">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">{reward.action}</p>
+                      <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold">
                         <Sparkles className="size-4" />
                         <span>+{reward.crystals}</span>
                       </div>
                     </div>
                   </div>
                 ))}
-                <div className="pt-4 border-t dark:border-white/10">
-                  <div className="flex items-center justify-between font-bold dark:text-white">
+                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700">
+                  <div className="flex items-center justify-between font-semibold text-neutral-900 dark:text-white">
                     <span>Total Potential</span>
-                    <div className="flex items-center gap-1 text-purple-600 dark:text-purple-400 text-lg">
+                    <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 text-lg">
                       <Sparkles className="size-5" />
                       <span>{project.totalReward}</span>
                     </div>
@@ -334,22 +330,22 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
                 <CardContent className="space-y-4">
                   <div>
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="text-gray-600">Tasks Completed</span>
-                      <span className="font-medium">
+                      <span className="text-neutral-600 dark:text-neutral-400">Tasks Completed</span>
+                      <span className="font-medium text-neutral-900 dark:text-white">
                         {completedSteps.length}/{tasks.length}
                       </span>
                     </div>
                     <Progress value={(completedSteps.length / tasks.length) * 100} className="h-2" />
                   </div>
-                  <div className="pt-4 border-t">
+                  <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-gray-600">Crystals Earned</span>
-                      <div className="flex items-center gap-1 text-purple-600 font-semibold">
+                      <span className="text-sm text-neutral-600 dark:text-neutral-400">Crystals Earned</span>
+                      <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold">
                         <Sparkles className="size-4" />
                         <span>{totalEarned + 500}</span>
                       </div>
                     </div>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-neutral-500 dark:text-neutral-500">
                       {project.totalReward - (totalEarned + 500)} crystals remaining
                     </p>
                   </div>
@@ -362,12 +358,12 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Star className="size-5 text-yellow-600" />
+                    <Star className="size-5 text-neutral-900 dark:text-white" />
                     Boost Your Rewards
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
                     Share your unique referral link and earn 100 extra crystals for each friend who joins!
                   </p>
                   <div className="space-y-2">
@@ -378,7 +374,7 @@ export function TaskProject({ onNavigate }: TaskProjectProps) {
                         value="https://crystalquest.app/ref/alex123"
                         readOnly
                       />
-                      <Button variant="outline">Copy</Button>
+                      <Button variant="outline" className="border-neutral-300 dark:border-neutral-700">Copy</Button>
                     </div>
                   </div>
                 </CardContent>
